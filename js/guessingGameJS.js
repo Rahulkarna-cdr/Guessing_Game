@@ -79,3 +79,66 @@ class Game{
         }
 }
 
+//UI logic
+let game = new Game();
+
+let hintUsed = false;
+
+let button1 = document.getElementById('submittingNum');
+const input = document.getElementById('numip');
+button1.addEventListener('click',() => {
+    const feedback = document.getElementById('feedback');
+    const guess = parseInt(input.value);
+
+    if (isNaN(guess) || guess>100 || guess<1) {
+        feedback.innerText = 'Please enter a valid number.';
+        return;
+    }
+
+    const result = game.playersGuessSubmission(guess);
+    feedback.innerText = result;
+
+    // Show guess count
+    document.getElementById('AttemptCount').innerText = `Attempt: ${game.pastGuesses.length}/5`;
+
+    // Show current guess
+    document.getElementById('currentGuess').innerText = `You guessed: ${game.playersGuess}`;
+
+    // input.value = '';
+});
+
+input.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter'){
+        button1.click();
+    }
+})
+
+// Hint button
+let button2 = document.getElementById('hint');
+button2.addEventListener('click', () => {
+    if (!hintUsed) {
+        const hints = game.provideHint();
+        document.getElementById('hntDisArea').innerText = `Hint: One of these is the correct number: ${hints.join(', ')}`;
+        hintUsed = true;
+    }
+});
+
+// New game button
+let newGameButton = document.getElementById('newGameBtn');
+newGameButton.addEventListener('click', () => {
+    game = new Game();
+    hintUsed = false;
+    document.getElementById('feedback').innerText = 'Make your first guess!';
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('AttemptCount').innerText = '';
+    document.getElementById('currentGuess').innerText = '';
+    document.getElementById('hntDisArea').innerText = '';
+    document.getElementById('numip').disabled = false;
+    document.getElementById('submittingNum').disabled = false;
+});
+
+// Utility to stop game input on win/lose
+function disableGame() {
+    document.getElementById('numip').disabled = true;
+    document.getElementById('submittingNum').disabled = true;
+}

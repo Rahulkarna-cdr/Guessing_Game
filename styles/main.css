@@ -1,1 +1,96 @@
 /* Write your CSS code in this file */
+body{
+    background-color: #1a1f3a;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#label{
+    font-size: 20px;
+}
+#container{
+    margin: 0 auto;
+    width: 400px;
+    border: 2px inset pink;
+    border-radius: 40px;
+    padding: 25px;
+}
+
+#container:hover{
+    transform: translateY(5px);
+}
+
+#submittingNum{
+    font-size: 20px;
+    border: none;
+    border-radius: 18px;
+    padding:15px;
+    background-color: #0066ff;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#submittingNum:hover{
+    background-color: #3388ff;
+    transform: translate(5px,2px);
+}
+.feedback {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /* min-height: 60px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+input{
+    border-radius: 22px;
+    width: 250px;
+    padding:15px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 2px solid #e1e8ed;
+    background-color: #A4CCD9;
+}
+
+input:hover{
+    transform: translateY(-2px);
+    border: 3px solid #6FE6FC;
+}
+
+#hint{
+    font-size: 20px;
+    border-radius: 18px;
+    padding:15px;
+    background-color: #f59e0b;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+}
+
+#hint:hover{
+    background-color: #fbbf24;
+    transform: translate(5px,2px);
+}
+
+#newGameBtn{
+    font-size: 20px;
+    border-radius: 18px;
+    padding:15px;
+    background-color: #16a34a;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+}
+
+#newGameBtn:hover{
+    background-color: #22c55e;
+    transform: translate(5px,2px);
+}
