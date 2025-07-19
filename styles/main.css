@@ -1,9 +1,14 @@
-/* Write your CSS code in this file */
 body{
-    background-color: #1a1f3a;
+    background: linear-gradient(45deg, #0f172a 0%, #1e293b 100%);
     color: #ffffff;
-    font-size: 15px;
+    font-size: 18px;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 #label{
@@ -11,10 +16,18 @@ body{
 }
 #container{
     margin: 0 auto;
-    width: 400px;
-    border: 2px inset pink;
+    min-width: 600px;
+    border: 1px solid #334155;
+    background: rgba(30, 41, 59, 0.6);
     border-radius: 40px;
-    padding: 25px;
+    padding: 10px 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease;
 }
 
 #container:hover{
@@ -22,19 +35,24 @@ body{
 }
 
 #submittingNum{
-    font-size: 20px;
+    font-size: 23px;
     border: none;
     border-radius: 18px;
-    padding:15px;
-    background-color: #0066ff;
+    padding:15px 25px;
+    margin: 10px;
+    min-width: 225px;
+    background-color: #2563eb;
     color: #ffffff;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 #submittingNum:hover{
-    background-color: #3388ff;
+    background-color: #3b82f6;;
     transform: translate(5px,2px);
+    cursor: pointer;
 }
+
 .feedback {
     text-align: center;
     margin: 20px 0;
@@ -42,55 +60,71 @@ body{
     border-radius: 10px;
     font-size: 20px;
     font-weight: bold;
-    /* min-height: 60px; */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #475569;
+    color: #b196eb;
+    min-height: 50px;
+    min-width: 500px;
 }
 
 input{
     border-radius: 22px;
-    width: 250px;
+    width: 300px;
     padding:15px;
+    margin: 10px;
     font-size: 20px;
+    color: #e2e8f0;
     font-weight: bolder;
-    border: 2px solid #e1e8ed;
-    background-color: #A4CCD9;
+    border: 2px solid #3b82f6;
+    background-color: #1e293b;
+    text-align: center;
+    transition: all 0.3s ease;
 }
+
 
 input:hover{
     transform: translateY(-2px);
-    border: 3px solid #6FE6FC;
+    border: 2px solid #60a5fa;
+    background-color: #334155;
 }
 
 #hint{
     font-size: 20px;
     border-radius: 18px;
-    padding:15px;
-    background-color: #f59e0b;
+    padding:15px 25px;
+    margin: 10px;
+    min-width: 225px;
+    background: linear-gradient(135deg,#f39c12,#e67e22);
     color: #ffffff;
     border: none;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 #hint:hover{
-    background-color: #fbbf24;
+    background: linear-gradient(135deg,#fbbf24,#f59e0b);
     transform: translate(5px,2px);
+    cursor: pointer;
 }
 
 #newGameBtn{
     font-size: 20px;
     border-radius: 18px;
-    padding:15px;
-    background-color: #16a34a;
+    padding:15px 25px;
+    margin: 10px;
+    min-width: 225px;
+    background-color: #10b981;
     color: #ffffff;
     border: none;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 #newGameBtn:hover{
     background-color: #22c55e;
     transform: translate(5px,2px);
+    cursor: pointer;
 }
