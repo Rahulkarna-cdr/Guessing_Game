@@ -8,23 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     
   </head>
-  <h1>Number Guessing game</h1>
   <body>
     <div id="container">
-    <label for="heading" id="label">Input the Number for Guessing</label><br><br>
-    <input type="text" name="num" id="numip" placeholder="Enter your Number"><br><br>
+      <h1>Number Guessing game</h1>
+    <label for="heading" id="label">Guess a number between 1 and 100!</label><br>
+    <input type="number" min="1" max="100" id="numip" placeholder="Enter your Number">
 
     <button id="submittingNum">submit</button>
 
     <div id="feedback" class="feedback">
       Make your first guess!
   </div>
-    <h3 id="AttemptCount"></h2><br>
-    <h3 id="currentGuess"></h2><br><br>
+    <h3 id="AttemptCount"></h3>
+    <h3 id="currentGuess"></h3>
 
     <!-- game controls -->
-    <button id="hint">Hints</button><br><br>
-    <button id = 'newGameBtn'>New</button><br><br>
+    <button id="hint">Get Hints 💡</button><br>
+    <button id = 'newGameBtn'>New Game</button><br>
     
     <h3 id="hntDisArea"></h3>
 
