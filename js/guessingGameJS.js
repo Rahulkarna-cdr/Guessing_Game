@@ -36,7 +36,7 @@ class Game{
         }
 
         playersGuessSubmission(num){
-            if(typeof num !== 'number' || num<1 || num>100){
+            if(typeof num !== 'number' ||isNaN(num) || num<1 || num>100){
                 throw "That is an invalid guess."
             }
             this.playersGuess=num;
@@ -53,7 +53,7 @@ class Game{
            }
            this.pastGuesses.push(guess);
 
-           if(this.pastGuesses.length===5){
+           if(this.pastGuesses.length === 5){
             return 'You Lose.'
            }
 
@@ -80,65 +80,93 @@ class Game{
 }
 
 //UI logic
-let game = new Game();
+let game=newGame()
 
-let hintUsed = false;
+let input=document.getElementById('numip')
+let message=document.getElementById('feedback')
+let attemptsLeft = document.getElementById('AttemptCount')
+let past=document.getElementById('currentGuess')
+let btn1 =document.getElementById('submittingNum')
 
-let button1 = document.getElementById('submittingNum');
-const input = document.getElementById('numip');
-button1.addEventListener('click',() => {
-    const feedback = document.getElementById('feedback');
-    const guess = parseInt(input.value);
-
-    if (isNaN(guess) || guess>100 || guess<1) {
-        feedback.innerText = 'Please enter a valid number.';
-        return;
+btn1.addEventListener('click',()=>{
+    let guess=parseInt(input.value);
+    try{
+    const result=game.playersGuessSubmission(guess)
+    message.textContent=result  
+    if(result.includes('You Win!')){
+        message.style.color = '#FAB12F';
+    }
+    else if(result.includes('You Lose.')){
+      message.style.color = '#ff6b6b'  
+    }
+    else{
+        message.style.color = '';
     }
 
-    const result = game.playersGuessSubmission(guess);
-    feedback.innerText = result;
+    if (result === 'You Win!' || result === 'You Lose.') {
+        input.disabled = true;
+        btn1.disabled = true;
+    }
 
-    // Show guess count
-    document.getElementById('AttemptCount').innerText = `Attempt: ${game.pastGuesses.length}/5`;
+       if (game.pastGuesses.length<5){
+        past.textContent= `Past Guess: ${game.pastGuesses[game.pastGuesses.length-1]}`
+        }
+        else{
+            past.style.color = '#ff6b6b'
+                past.textContent= `😢 Oops! It was ${game.winningNumber}. Want to try your luck again?`                
+        }
+            
+    }catch (err){
+        message.innerText = err;
+        message.style.color= '#ff6b6b';
+    }
 
-    // Show current guess
-    document.getElementById('currentGuess').innerText = `You guessed: ${game.playersGuess}`;
+    input.value=''
 
-    // input.value = '';
-});
-
+    if (game.pastGuesses.length <5) {
+        attemptsLeft.innerText = `Attempt: ${game.pastGuesses.length}/5`;
+    } else {
+        attemptsLeft.innerText = `Attempt: 5/5`;
+    }
+    
+})
 input.addEventListener('keydown', (event) => {
-    if(event.key === 'Enter'){
-        button1.click();
+    if(event.key === "Enter"){
+        btn1.click();
+    }
+
+
+})
+document.getElementById('hint').addEventListener('click',()=>{
+if(game.pastGuesses.length>2){
+    const hints=game.provideHint()
+    document.getElementById('hntDisArea').innerText=`💡 Hints : ${hints.join(', ')} (One of these is correct!)`;    
+    
+}
+    else{
+        alert(`Hint is available after 3 attempts only..`)
     }
 })
 
-// Hint button
-let button2 = document.getElementById('hint');
-button2.addEventListener('click', () => {
-    if (!hintUsed) {
-        const hints = game.provideHint();
-        document.getElementById('hntDisArea').innerText = `Hint: One of these is the correct number: ${hints.join(', ')}`;
-        hintUsed = true;
-    }
+document.getElementById('newGameBtn').addEventListener('click', () => {
+    game = newGame();
+    message.textContent = 'Game is Reset! Start your Game';
+    document.getElementById('hntDisArea').textContent = '';
+    input.value = '';
+    past.textContent = '';
+    past.style.color = '';
+    message.style.color = '';
+    
+    input.disabled = false;
+    btn1.disabled = false;
+
+    attemptsLeft.innerText = 'Attempt: 0/5'
 });
 
-// New game button
-let newGameButton = document.getElementById('newGameBtn');
-newGameButton.addEventListener('click', () => {
-    game = new Game();
-    hintUsed = false;
-    document.getElementById('feedback').innerText = 'Make your first guess!';
-    document.getElementById('feedback').className = 'feedback';
-    document.getElementById('AttemptCount').innerText = '';
-    document.getElementById('currentGuess').innerText = '';
-    document.getElementById('hntDisArea').innerText = '';
-    document.getElementById('numip').disabled = false;
-    document.getElementById('submittingNum').disabled = false;
-});
-
-// Utility to stop game input on win/lose
-function disableGame() {
-    document.getElementById('numip').disabled = true;
-    document.getElementById('submittingNum').disabled = true;
+if(message.innerText==='You Lose.'){
+    input.disabled = true;
+    btn1.disabled = true;
 }
+
+
+
